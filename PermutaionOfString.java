@@ -18,6 +18,7 @@ public class PermutaionOfString {
             for(int i=l; i<=r;i++){
                 str = swap(str, l, i);
                 allpermutations(str, l+1, r);
+                // backtrack
                 str= swap(str, l, i);
             }
         }
