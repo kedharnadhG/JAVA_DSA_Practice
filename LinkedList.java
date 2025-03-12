@@ -30,9 +30,6 @@ public class LinkedList {
     }
 
 
-
-
-
     //insert the node at the very end in the linked list
     public void insertAtEnd(int newData){
         //initialize the newNode with the newData entered by the user
@@ -55,6 +52,9 @@ public class LinkedList {
         return;
 
     }
+
+
+
 
 
     //implementation of deletion of a node in linked list
@@ -193,7 +193,7 @@ public class LinkedList {
         System.out.println();
 
         //deleting 4th element
-        llist.deleteNode(3);
+        // llist.deleteNode(3);
         System.out.println("after deleting 4th element, the lList is");
         llist.printNodes();
         System.out.println();

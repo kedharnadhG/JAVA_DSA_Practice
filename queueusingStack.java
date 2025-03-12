@@ -45,7 +45,7 @@ public class queueusingStack {
         queueusingStack q = new queueusingStack();
 
         //insertion of elements in the queue
-        q.enqueue(1);
+        queueusingStack.enqueue(1);
         q.enqueue(2);
         q.enqueue(3);
         q.enqueue(4);     //the data in stack is like this [4,3,2,1]

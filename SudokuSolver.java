@@ -9,8 +9,7 @@ public class SudokuSolver {
         }
     }
 
-    public static boolean isSafe(int[][] grid, int row, int column, int num, int n) { // num -> is the number we want to
-                                                                                      // insert
+    public static boolean isSafe(int[][] grid, int row, int column, int num, int n) { // num -> is the number we want to insert
         // (checking for) Row clash - row has unique value or not
         for (int i = 0; i < n; i++) {
             // check the number we are trying to assign is already presen or not
