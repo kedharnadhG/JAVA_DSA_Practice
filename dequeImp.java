@@ -17,8 +17,8 @@ public class dequeImp {
         System.out.println("Deque data is: "+ deque);
 
         //for stack op'n (LIFO)
-        // deque.removeLast();
-        // System.out.println("Deque data after the deletion is: "+ deque);
+        deque.removeLast();
+        System.out.println("Deque data after the deletion is: "+ deque);
 
         //for Queue op'n (FIFO)
         deque.removeFirst();
