@@ -1,6 +1,4 @@
-//K'th smallest element in the array
-public class SelectionProcedure {
-
+public class KthLargestElementInt {
     public static int partition(int[] arr, int low, int high) {
         //considering first element as pivot of an array
         int pivot = arr[low];
@@ -48,12 +46,12 @@ public class SelectionProcedure {
     }
 
     public static void main(String[] args) {
-        // int[] arr = {70,50,60,10,20,30,80,15};
         int[] arr1 = {50,30,70,90,10,34,89,98,13};
         int n = arr1.length;
-        int k = 6;  //we want the 3rd smallest element in the array
+        int k = 3;  //we want the 3rd largest element in the array
 
-        int thirdSmallest = selectionProcedure(arr1, 0, n-1, k); //select function returns the kth smallest element in the array
+        //I want K'th largest element in the array (3rd largest means: ( n-k+1 (9-3+1 = 7) ) 7'th smallest element in the array) i.e the relation
+        int thirdSmallest = selectionProcedure(arr1, 0, n-1, n-k+1); //select function returns the kth smallest element in the array
 
         System.out.println(k + "th smallest element in the array is: " + thirdSmallest);
     }
