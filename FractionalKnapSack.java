@@ -1,6 +1,9 @@
 import java.util.*;
 
 public class FractionalKnapSack {
+
+    // Overall Time Complexity: O(nlogn) (n+nlogn+n) = O(2nlogn) = O(nlogn) (for sorting)
+
     public static class ItemValue {
         int profit, weight;
 
