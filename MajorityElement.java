@@ -1,8 +1,9 @@
+//Majority Element is that element which occurs more than n/2 times
 public class MajorityElement {
-    // Boyer-Moore Voting Algorithm 
-    //Majority Element is that element which occurs more than n/2 times
-    // Overall Time Complexity: O(n) + O(n) = O(2n) => O(n)
-    // Space Complexity: O(1)
+    // Boyer-Moore Voting Algorithm     (for-loop)
+    // The algorithm does not guarantee that majEle will appear more than n/2 times (this is what the verification loop at the end does). 
+    // The Boyer-Moore algorithm only ensures that it identifies a candidate for the majority element.
+    
     public static int findMajority(int[] arr){
         //in greedy, the first element is the majority element
         int majEle = arr[0];
@@ -36,8 +37,9 @@ public class MajorityElement {
         
     }
     public static void main(String[] args) {
-        int[] arr= {1,2,3,1,2,1};
-        int result = findMajority(arr);
+        // int[] arr= {1,2,3,1,2,1};
+        int[] arr2= {1,2,3,1,1,1};
+        int result = findMajority(arr2);
         
         if(result == -1) {
             System.out.println("No majority element found");
@@ -46,3 +48,7 @@ public class MajorityElement {
         }
     }
 }
+
+
+// Overall Time Complexity: O(n) + O(n) = O(2n) => O(n)
+    // Space Complexity: O(1)
