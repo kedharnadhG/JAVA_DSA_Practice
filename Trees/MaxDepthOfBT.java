@@ -30,6 +30,18 @@ public class MaxDepthOfBT {
         }
     }
 
+    public static int heightOfTree(Node root){
+        if(root==null){
+            return 0;
+        }
+        else{
+            int lDepth = heightOfTree(root.left);
+            int rDepth = heightOfTree(root.right);
+            
+            return 1 + Math.max(lDepth, rDepth);
+        }
+    }
+
     public static void main(String[] args) {
         
         MaxDepthOfBT tree = new MaxDepthOfBT();
@@ -43,6 +55,10 @@ public class MaxDepthOfBT {
         tree.root.right.right = new Node(7);
 
         System.out.println("The maximum depth/height of the binary tree is : "+maxDepth(tree.root));
+
+        System.out.println();
+        
+        System.out.println("The height of the binary tree is : "+heightOfTree(tree.root));
     
     }
 }
