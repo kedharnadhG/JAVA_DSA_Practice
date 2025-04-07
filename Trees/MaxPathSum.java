@@ -40,11 +40,15 @@ public class MaxPathSum {
 
         MaxPathSum tree = new MaxPathSum();
 
-        tree.root = new Node(-10);
-        tree.root.left = new Node(9);
-        tree.root.right = new Node(20);
-        tree.root.right.left = new Node(15);
-        tree.root.right.right = new Node(7);
+        // tree.root = new Node(-10);
+        // tree.root.left = new Node(9);
+        // tree.root.right = new Node(20);
+        // tree.root.right.left = new Node(15);
+        // tree.root.right.right = new Node(7);
+
+        tree.root = new Node(1);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(3);
 
         int[] maxSumValue = new int[1];
         maxSumValue[0] = Integer.MIN_VALUE;
