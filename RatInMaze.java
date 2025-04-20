@@ -52,9 +52,9 @@ public class RatInMaze {
     public static void main(String[] args) {
      
         int[][] maze= {{1,0,1,0},
-                        {1,0,1,1},
-                        {1,1,1,0},
-                        {0,0,1,0}};
+                        {1,1,0,0},
+                        {0,1,1,0},
+                        {0,0,1,1}};
         int n= maze.length;
         int output[][] = new int[n][n];
         if(solveMaze(maze, output, 0, 0, n)==true){

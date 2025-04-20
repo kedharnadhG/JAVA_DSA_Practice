@@ -50,3 +50,8 @@ public class bubbleSort {
         System.out.println("after bubble descending sorting the array is: " + Arrays.toString(arr));
     }
 }
+
+
+
+
+//time complexity: O(n^2)

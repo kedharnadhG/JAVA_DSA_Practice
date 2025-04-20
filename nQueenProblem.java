@@ -9,6 +9,21 @@ public class nQueenProblem {
         }
     }
 
+
+    /* 
+     
+
+    Since we're placing one queen per column (left to right), we only need to check:
+
+        Left side of the same row
+
+        Upper left diagonal
+
+        Lower left diagonal
+
+
+     */
+
     public static boolean isSafe(int[][] board, int row, int column, int n) {
         int i, j;
 
@@ -26,7 +41,7 @@ public class nQueenProblem {
             }
         }
 
-        // check lower diagonal on right side
+        // check lower diagonal on left side
         for (i = row, j = column; i < n && j >= 0; i++, j--) {
             if (board[i][j] == 1) {
                 return false;

@@ -8,7 +8,7 @@ public class LowerBound {
             int mid=low+ (high-low)/2;
             if(arr[mid]==target){
                 result=mid;
-                high=mid-1;
+                high=mid-1;   //if we want to find the first occurance, we need to go to left side of mid 
             }
             else if(arr[mid]<target){
                 low=mid+1;
