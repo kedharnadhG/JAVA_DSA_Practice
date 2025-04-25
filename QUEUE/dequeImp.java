@@ -1,3 +1,4 @@
+package QUEUE;
 import java.util.*;
 public class dequeImp {
     public static void main(String[] args) {

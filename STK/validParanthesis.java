@@ -1,3 +1,4 @@
+package STK;
 // TC : O(n)  ('n' is the size of the string)
 // SC : O(n) 
 
@@ -17,7 +18,7 @@ public class validParanthesis {
         for(char ele: chars){
             if(ele=='(' || ele=='{' || ele=='[' ){
                 stack1.push(ele);
-                continue;
+                continue;    //it skips the rest of the loop
             }
 
             else if(stack1.empty()){

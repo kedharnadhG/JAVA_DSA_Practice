@@ -8,7 +8,7 @@ public class JobScheduling {
     char id;
     int deadline, profit;
 
-    public JobScheduling() {}
+    public JobScheduling() {} // empty constructor because we are using arraylist ()
 
     public JobScheduling(char id, int deadline, int profit) {
         this.id = id;
@@ -19,7 +19,7 @@ public class JobScheduling {
     public void printJobSequence(ArrayList<JobScheduling> arr, int MaxDeadline) {
         // 1.Sort the array on the basis of profit in descending order
         //lambda expressions   TC: O(nlogn)
-        Collections.sort(arr, (a,b)->b.profit-a.profit);
+        Collections.sort(arr, (a,b)->b.profit-a.profit); // (a-b) because we need to sort in descending order
 
         //2. Store the job-ids on the basis of the max profit and given deadline   TC: O(n^2)
 

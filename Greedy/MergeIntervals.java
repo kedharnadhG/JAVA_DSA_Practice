@@ -23,6 +23,7 @@ public class MergeIntervals {
                 merged.getLast()[1] = Math.max(interval[1], merged.getLast()[1]);
             }
         }
+        // new int[merged.size()][] (because we have to return a 2D array, and the size of the 2D array is the size of the linkedlist)
         return merged.toArray(new int[merged.size()][]);
     }
     public static void main(String[] args) {

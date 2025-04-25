@@ -39,6 +39,7 @@ public class inversionCount {
                 //we are adding the difference of the mid index and the current index of the left subarray to the swap variable. This is because this is the number of elements in the left subarray that are smaller than the current element in the right subarray. 
                 //hence we are counting the number of inversions.
                 //assignment problem
+                // Count of remaining elements in left subarray (see chatGPT)
                 swap += (mid +1) - (l + i);
             }
         }

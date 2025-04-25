@@ -1,3 +1,4 @@
+package LL;
 public class LinkedList {
     Node head;
     class Node{
@@ -149,7 +150,7 @@ public class LinkedList {
             System.out.println("No Loop(Cycle) detected");
         }
         else{
-            System.out.println("Loop(Cycle) is Detected");
+            System.out.println("Loop(Cycle) is Detected"+ "meeting point is:" +slowPtr.data);
         }
         
     }

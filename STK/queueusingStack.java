@@ -1,3 +1,4 @@
+package STK;
 //Implementation of QUeue dataStructure using Stacks
 //Time Complexity: enQueue: O(1)
 //Time Complexity: deQueue: O(n)

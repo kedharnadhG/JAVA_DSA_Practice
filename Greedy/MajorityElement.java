@@ -50,5 +50,5 @@ public class MajorityElement {
 }
 
 
-// Overall Time Complexity: O(n) + O(n) = O(2n) => O(n)
+// Overall Time Complexity: O(n)
     // Space Complexity: O(1)

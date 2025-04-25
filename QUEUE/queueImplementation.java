@@ -1,3 +1,4 @@
+package QUEUE;
 import java.util.*;
 import java.util.LinkedList;
 public class queueImplementation {

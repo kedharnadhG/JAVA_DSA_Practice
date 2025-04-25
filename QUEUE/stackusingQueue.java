@@ -1,3 +1,4 @@
+package QUEUE;
 //Implementation of Stack DataStructure using Queue
 // Time Complexity for Add: O(n)
 // Time Complexity for remove: O(1)

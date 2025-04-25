@@ -1,3 +1,4 @@
+package STK;
 import java.util.*;
 public class stackImplementation {
     public static void main(String[] args) {

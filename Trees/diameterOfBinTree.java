@@ -47,6 +47,11 @@ public class diameterOfBinTree {
 
         int[] diameter = new int[1];
         // System.out.println(height(tree.root, diameter));
+
+        //you need to understand this line
+        // int depth =  height(tree.root, diameter);
+        // System.out.println("The depth of the binary tree is : "+depth);
+
         height(tree.root, diameter);
         System.out.println("The diameter of the binary tree is : "+diameter[0]);
     }

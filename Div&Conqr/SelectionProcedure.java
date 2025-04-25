@@ -56,5 +56,9 @@ public class SelectionProcedure {
         int thirdSmallest = selectionProcedure(arr1, 0, n-1, k); //select function returns the kth smallest element in the array
 
         System.out.println(k + "th smallest element in the array is: " + thirdSmallest);
+
+        //we want the 3rd largest element in the array
+        // (n - k + 1) -> 9-3+1 = 7, 7'th smallest element in the array
+        System.out.println("3rd largest element in the array is "+ selectionProcedure(arr1, 0, n-1, 7));
     }
 }
