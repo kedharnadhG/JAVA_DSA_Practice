@@ -64,7 +64,7 @@ public class nQueenProblem {
         // rows
         for (int i = 0; i <n; i++) {
             // check if it is safe to place the queen or not
-            if (isSafe(board, i, column, column) == true) {
+            if (isSafe(board, i, column, n) == true) {
                 // place queen in the board
                 board[i][column] = 1;
 
