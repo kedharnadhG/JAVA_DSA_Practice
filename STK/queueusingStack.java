@@ -30,7 +30,8 @@ public class queueusingStack {
         }
 
         //pushing the elements of stack1 by popping to the Stack2, to achieve the FIFO
-        if(stack2.empty()){
+        if (stack2.empty()) {
+             //pushing only when stack2 is empty, if not empty, we don't need to push we can directly pop
             while (!stack1.empty()) {
                 ele = stack1.pop();
                 stack2.push(ele);

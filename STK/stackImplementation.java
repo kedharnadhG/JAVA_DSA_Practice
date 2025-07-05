@@ -15,7 +15,7 @@ public class stackImplementation {
         
         
         //delete the element from the stack
-        stack1.pop();
+        System.out.println(stack1.pop());
         
         //display the top element in the stack
         System.out.println("The topmost element in the stack is: "+ stack1.peek());

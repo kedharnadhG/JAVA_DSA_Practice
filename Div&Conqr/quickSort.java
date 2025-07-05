@@ -6,7 +6,7 @@ public class quickSort {
     //function todo the partition of an array
     public static int partition(int[] arr, int l, int h){
         int pivot = arr[l];
-        int i = l;
+        int i = l;       // "i" tracks the position where the pivot should go
         for(int j=l+1; j<=h; j++){
             if(arr[j]< pivot){
                 i=i+1;

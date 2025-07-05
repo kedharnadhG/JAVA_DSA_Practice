@@ -40,6 +40,47 @@ public class inversionCount {
                 //hence we are counting the number of inversions.
                 //assignment problem
                 // Count of remaining elements in left subarray (see chatGPT)
+
+
+                /*
+                 
+                    🧠 Why swap += (mid + 1) - (l + i)?
+                        Let’s break it down:
+                
+                        l + i → actual index in the original array of current element in left subarray.
+                
+                        mid + 1 → start of right subarray.
+                
+                        So, (mid + 1) - (l + i) → number of remaining elements in the left subarray that are greater than rsubarray[j].
+                
+                        Because:
+                
+                        lsubarray[i] > rsubarray[j] → So every element from i to end of lsubarray will also be greater (since left & right are sorted).
+                
+                        These are inversions — so we count them all in one go.
+                        
+                
+                        let : 
+                        
+                            arr = [1, 5, 2, 6]
+                
+                            Merge step for [1, 5] and [2, 6]:
+
+                            i = 0 (1), j = 0 (2) → 1 < 2 → no inversion
+
+                            i = 1 (5), j = 0 (2) → 5 > 2 → inversion found
+
+                            Now:
+
+                            l = 0, mid = 1, i = 1
+
+                            swap += (1 + 1) - (0 + 1) = 2 - 1 = 1
+
+                            That’s correct — 5 is greater than 2, and there’s only one element (5) left in lsubarray, so 1 inversion.
+                 
+                 */
+
+
                 swap += (mid +1) - (l + i);
             }
         }

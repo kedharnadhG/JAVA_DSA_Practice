@@ -195,18 +195,18 @@ public class LinkedList {
 
         //deleting 4th element
         // llist.deleteNode(3);
-        System.out.println("after deleting 4th element, the lList is");
-        llist.printNodes();
-        System.out.println();
+        // System.out.println("after deleting 4th element, the lList is");
+        // llist.printNodes();
+        // System.out.println();
 
 
         //reversing of linked list
         // llist.reverseLL();
 
         //rever using recursive code
-        // llist.reversalRec(llist.head, null);
-        // System.out.println("After reversing the linked list is");
-        // llist.printNodes();
+        llist.reversalRec(llist.head, null);
+        System.out.println("After reversing the linked list is");
+        llist.printNodes();
 
         //finding Middle Node
         // llist.middleNode();

@@ -4,8 +4,9 @@ public class randomizedQuickSort {
      //function todo the partition of an array
     public static int partition(int[] arr, int l, int h){
 
-        int randomIndex = l + (int)Math.random() % (h-l +1);
+        int randomIndex = l + (int) Math.random() % (h - l + 1);
 
+        // swapping the random element with the first element and then everything is same as quicksort
         int temp = arr[randomIndex];
         arr[randomIndex] = arr[l];
         arr[l]= temp;
