@@ -30,14 +30,11 @@ public class MergeSort {
         while(i<n1 && j< n2)
         {
             if(lsubarray[i]<= rsubarray[j]){
-                arr[k]= lsubarray[i];
-                i = i+1;
+                arr[k++]= lsubarray[i++];
             }
             else{
-                arr[k]= rsubarray[j];
-                j = j+1;
+                arr[k++]= rsubarray[j++];
             }
-            k= k+1;
         }
 
         //copy the remaining elements (if any of the subarray got completed)

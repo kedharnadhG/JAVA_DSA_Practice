@@ -22,20 +22,15 @@ public class BinarySearch {
 
     //Binary search using recursion
     public static int binarySearchRecur(int[] arr, int low, int  high, int target){
-        int result =-1;
-        while (low<=high) {
-            int mid=low + (high-low)/2;
-            if(arr[mid]==target){
-                return mid;
-            }
-            else if(arr[mid]<target){
-                return binarySearchRecur(arr, mid+1, high, target);
-            }
-            else{
-                return binarySearchRecur(arr, low, mid-1, target);
-            }
-        }
-        return result;
+        if(low>high) return -1;
+        
+        int mid = low + high-low /2;
+
+        if(arr[mid] == target) return mid;
+        else if(target > arr[mid]) 
+            return binarySearchRecur(arr, mid+1, high, target);
+        else 
+            return binarySearchRecur(arr, low, mid-1, target);
     }
 
     public static void main(String[] args) {
