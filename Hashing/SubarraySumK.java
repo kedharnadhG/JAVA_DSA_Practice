@@ -5,6 +5,62 @@ import java.util.Map;
 
 class SubarraySumK {
 
+
+    /*
+    
+            public static void findSubarrayStats(int[] arr, int k) {
+                Map<Integer, Integer> firstOcc = new HashMap<>();
+                Map<Integer, Integer> lastOcc = new HashMap<>();
+
+                firstOcc.put(0, 0);
+                lastOcc.put(0, 0);
+
+                int prefixSum = 0;
+                int maxLength = 0, maxCount = 0;
+                int minLength = Integer.MAX_VALUE, minCount = 0;
+
+                for (int j = 1; j <= arr.length; j++) {
+                    prefixSum += arr[j - 1];
+                    int x = prefixSum - k;
+
+                    // Largest using firstOcc
+                    if (firstOcc.containsKey(x)) {
+                        int i = firstOcc.get(x) + 1;
+                        int curLength = j - i + 1;
+
+                        if (curLength > maxLength) {
+                            maxLength = curLength;
+                            maxCount = 1;
+                        } else if (curLength == maxLength) {
+                            maxCount++;
+                        }
+                    }
+
+                    // Smallest using lastOcc
+                    if (lastOcc.containsKey(x)) {
+                        int i = lastOcc.get(x) + 1;
+                        int curLength = j - i + 1;
+
+                        if (curLength < minLength) {
+                            minLength = curLength;
+                            minCount = 1;
+                        } else if (curLength == minLength) {
+                            minCount++;
+                        }
+                    }
+
+                    // Update maps
+                    firstOcc.putIfAbsent(prefixSum, j);
+                    lastOcc.put(prefixSum, j);
+                }
+
+                System.out.println("Max Length: " + maxLength + " Count: " + maxCount);
+                System.out.println("Min Length: " + (minLength == Integer.MAX_VALUE ? -1 : minLength) + " Count: " + minCount);
+            }
+     
+     */
+
+
     public static void findSubarrays(int[] nums, int k) {
         Map<Integer, Integer> firstOccurrence = new HashMap<>();
         Map<Integer, Integer> lastOccurrence = new HashMap<>();
