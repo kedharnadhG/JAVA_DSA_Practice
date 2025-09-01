@@ -71,7 +71,7 @@ class SubarraySumK {
         for (int i = 0; i < nums.length; i++) {
             prefixSum += nums[i];
 
-            // Case 1: Subarray from start
+            // Case 1: Subarray from start itself
             if (prefixSum == k) {
                 maxLen = Math.max(maxLen, i + 1);
                 minLen = Math.min(minLen, i + 1);
@@ -98,13 +98,44 @@ class SubarraySumK {
         System.out.println("Smallest Subarray Length = " + (minLen == Integer.MAX_VALUE ? -1 : minLen));
     }
 
+    public static void findSubarrays2(int num[], int k) {
+        Map<Integer, Integer> firstOcc = new HashMap<>();
+        Map<Integer, Integer> lastOcc = new HashMap<>();
+
+        int prefixSum = 0;
+        int maxLength = 0;
+        int minLength = Integer.MAX_VALUE;
+        
+        for (int i = 0; i < num.length; i++) {
+            
+            prefixSum += num[i];
+
+            if (prefixSum == k) {
+                maxLength = Math.max(maxLength, i + 1);
+                minLength = Math.min(minLength, i + 1);
+            }
+
+            if (firstOcc.containsKey(prefixSum - k)) {
+                maxLength = Math.max(maxLength, i - firstOcc.get(prefixSum - k));
+            }
+
+            if (lastOcc.containsKey(prefixSum - k)) {
+                minLength = Math.min(minLength, i - lastOcc.get(prefixSum - k));
+            }
+
+            firstOcc.putIfAbsent(prefixSum, i);
+            lastOcc.put(prefixSum, i);
+        }
+
+    }
+
     public static void main(String[] args) {
         int[] nums = { 3, 1, 3, -2, 2 };
         int k = 4;
         findSubarrays(nums, k);
         // Output:
         // Largest Subarray Length = 4
-        // Smallest Subarray Length = 1
+        // Smallest Subarray Length = 2
     }
     
 }
