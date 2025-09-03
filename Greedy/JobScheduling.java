@@ -8,6 +8,7 @@ public class JobScheduling {
     char id;
     int deadline, profit;
 
+    //  Doubt
     public JobScheduling() {} // empty constructor because we are using arraylist ()
 
     public JobScheduling(char id, int deadline, int profit) {
