@@ -1,3 +1,4 @@
+package sorting;
 import java.util.*;;
 public class InsertionSort {
     public static void insertionSort(int[] arr){

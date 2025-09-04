@@ -1,3 +1,4 @@
+package sorting;
 import java.util.*;
 public class SelectionSort {
     public static void selectionSort(int[] arr){

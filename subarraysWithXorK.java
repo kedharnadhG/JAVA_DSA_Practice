@@ -27,11 +27,7 @@ public class subarraysWithXorK {
             }
 
             //If xr is present in the map:
-            if (map.containsKey(XR)) {
-                map.put(XR, map.getOrDefault(XR, 0) + 1);
-            } else {
-                map.put(XR, 1);
-            }
+            map.put(XR, map.getOrDefault(XR, 0) + 1);
 
         }
         
