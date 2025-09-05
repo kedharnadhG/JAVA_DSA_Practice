@@ -5,71 +5,8 @@ import java.util.Map;
 
 public class CountOfSubArraySumK {
 
-    // public static int[] countSubArraySumK(int[] arr, int k) {
-    //     Map<Integer, Integer> firstOcc = new HashMap<>();
-    //     Map<Integer, Integer> lastOcc = new HashMap<>();
 
-    //     int prefixSum = 0;
-    //     int maxLength = 0;
-    //     int minLength = Integer.MAX_VALUE;
-    //     int maxCount = 0;
-    //     int minCount = 0;
-
-    //     for (int i = 0; i < arr.length; i++) {
-
-    //         prefixSum += arr[i];
-
-    //         if (prefixSum == k) {
-    //             int currlength = i + 1;
-
-    //             if (currlength > maxLength) {
-    //                 maxLength = currlength;
-    //                 maxCount = 1;
-    //             } else if (currlength == maxLength) {
-    //                 maxCount++;
-    //             }
-
-    //             if (currlength < minLength) {
-    //                 minLength = currlength;
-    //                 minCount = 1;
-    //             } else if (currlength == minLength) {
-    //                 minCount++;
-    //             }
-    //         }
-
-    //         int x = prefixSum - k;
-
-    //         if (firstOcc.containsKey(x)) {
-    //             int currlength = i - firstOcc.get(x);
-
-    //             if (currlength > maxLength) {
-    //                 maxLength = currlength;
-    //                 maxCount = 1;
-    //             } else if (currlength == maxLength) {
-    //                 maxCount++;
-    //             }
-
-    //         }
-
-    //         if (lastOcc.containsKey(x)) {
-    //             int currlength = i - lastOcc.get(x);
-
-    //             if (currlength < minLength) {
-    //                 minLength = currlength;
-    //                 minCount = 1;
-    //             } else if (currlength == minLength) {
-    //                 minCount++;
-    //             }
-    //         }
-
-    //         firstOcc.putIfAbsent(prefixSum, i);
-    //         lastOcc.put(prefixSum, i);
-
-    //     }
-
-    //     return new int[]{maxCount, minCount};
-    // }
-
+    
     public static int[] lengthOfSubArraySumK(int[] arr, int k) {
         Map<Integer, Integer> firstOcc = new HashMap<>();
         Map<Integer, Integer> lastOcc = new HashMap<>();
@@ -149,6 +86,77 @@ public class CountOfSubArraySumK {
 
 
 
+
+        /*
+     
+        public static int[] countSubArraySumK(int[] arr, int k) {
+        Map<Integer, Integer> firstOcc = new HashMap<>();
+        Map<Integer, Integer> lastOcc = new HashMap<>();
+
+        int prefixSum = 0;
+        int maxLength = 0;
+        int minLength = Integer.MAX_VALUE;
+        int maxCount = 0;
+        int minCount = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+
+            prefixSum += arr[i];
+
+            if (prefixSum == k) {
+                int currlength = i + 1;
+
+                if (currlength > maxLength) {
+                    maxLength = currlength;
+                    maxCount = 1;
+                } else if (currlength == maxLength) {
+                    maxCount++;
+                }
+
+                if (currlength < minLength) {
+                    minLength = currlength;
+                    minCount = 1;
+                } else if (currlength == minLength) {
+                    minCount++;
+                }
+            }
+
+            int x = prefixSum - k;
+
+            if (firstOcc.containsKey(x)) {
+                int currlength = i - firstOcc.get(x);
+
+                if (currlength > maxLength) {
+                    maxLength = currlength;
+                    maxCount = 1;
+                } else if (currlength == maxLength) {
+                    maxCount++;
+                }
+
+            }
+
+            if (lastOcc.containsKey(x)) {
+                int currlength = i - lastOcc.get(x);
+
+                if (currlength < minLength) {
+                    minLength = currlength;
+                    minCount = 1;
+                } else if (currlength == minLength) {
+                    minCount++;
+                }
+            }
+
+            firstOcc.putIfAbsent(prefixSum, i);
+            lastOcc.put(prefixSum, i);
+
+        }
+
+        return new int[]{maxCount, minCount};
+    }
+
+
+     */
+    
 
         // int[] ans = countSubArraySumK(arr, k);
 
