@@ -69,13 +69,39 @@ public class CountNoOfGoodSubArrays {
         HashMap<Long, Long> freq = new HashMap<>();
         freq.put(0L, 1L);
 
-        for (int j = 1; j <= n; j++) {
-            long y = p[j] - j;
-            count += freq.getOrDefault(y, 0L);
-            freq.put(y, freq.getOrDefault(y, 0L) + 1);
+        /*
+            //count of Good SubArrays (without the modulo operation)
+            for (int j = 1; j <= n; j++) {
+                long y = p[j] - j;
+                count += freq.getOrDefault(y, 0L);
+                freq.put(y, freq.getOrDefault(y, 0L) + 1);
+            }
+         */
+
+        // Real-problem  ( with modulo operation)
+        int k = 4;
+        for (int i = 1; i <= n; i++) {
+
+            long modPrefix = ((p[i] % k - i % k + k) % k);
+
+            count += freq.getOrDefault(modPrefix, 0L);
+            freq.put(modPrefix, freq.getOrDefault(modPrefix, 0L) + 1);
         }
+
 
         System.out.println(count);
     }
 
 }
+
+
+
+/* Sample Input & Output
+
+    4   -> n
+    1 3 2 4   -> b
+
+    Output:
+    2    
+
+ */
