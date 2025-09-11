@@ -21,10 +21,11 @@ public class prefixSum {
     }
  
     public static void main(String[] args) {
-        int[] nums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        // int[] nums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int[] nums = { 3, 5, 6, 4, 2 };
         int[] prefix = prefixSum(nums);
  
-        int l = 0, r = 9; // Example range [l, r]
+        int l = 1, r = 3; // Example range [l, r]
         System.out.println("Optimized Sum: " + optimizedSum(prefix, l, r));
     }
 

@@ -18,6 +18,8 @@ public class NoOfStepsToMakeAllpilesEql {
 
 
         int stepsCnt = 0;
+
+        // after converting the map to a list it look like :-> [ [5, 2],[4, 2], [2, 1]]
         List<Map.Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());
 
         for (int i = 0; i < list.size() - 1; i++) {
@@ -44,3 +46,14 @@ public class NoOfStepsToMakeAllpilesEql {
         System.out.println("No of steps to make all piles equal: " + minSteps(nums));
     }
 }
+
+
+
+/* Output: 
+            5=2
+            [5=0, 4=4, 2=1]
+            4=4
+            [5=0, 4=0, 2=5]
+            No of steps to make all piles equal: 6
+
+ */

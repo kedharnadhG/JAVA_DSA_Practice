@@ -32,6 +32,10 @@ public class CountNoOfGoodSubArrays {
             freq.put(0L, 1L);
     
             for (int i = 0; i < n; i++) {
+    
+                // In 1-based, length is j-i+1 but j and i already start from 1, so no extra shift.
+                // In 0-based, r starts from 0, so to include that first element, you need r+1.
+    
                 long y = p[i] - (i +1);
     
                 count += freq.getOrDefault(y, 0L);
@@ -47,7 +51,7 @@ public class CountNoOfGoodSubArrays {
             long[] b = { 1, 1, 1, 4 };
             System.out.println("Count of good subarrays: " + countGoodSubarrays(b));
         }
-
+    
      */
 
 
