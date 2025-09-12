@@ -10,10 +10,10 @@ public class largestValidSubstring {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int n = sc.nextInt(); // length of string
-        int k = sc.nextInt(); // maximum allowed difference
+        int n = sc.nextInt(); // length of string    -> 5
+        int k = sc.nextInt(); // maximum allowed difference   -> 2
         sc.nextLine();
-        String s = sc.nextLine();
+        String s = sc.nextLine();   // -> abdzd
 
         TreeMap<Character, Integer> map = new TreeMap<>();
         int maxLength = 0;
@@ -39,7 +39,7 @@ public class largestValidSubstring {
             maxLength = Math.max(maxLength, right - left + 1);
         }
 
-        System.out.println(maxLength);
+        System.out.println( "The length of the largest valid substring is: " + maxLength);
     }
 
     

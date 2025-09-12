@@ -98,41 +98,31 @@ class SubarraySumK {
         System.out.println("Smallest Subarray Length = " + (minLen == Integer.MAX_VALUE ? -1 : minLen));
     }
 
-    public static void findSubarrays2(int num[], int k) {
-        Map<Integer, Integer> firstOcc = new HashMap<>();
-        Map<Integer, Integer> lastOcc = new HashMap<>();
+    // using 2-pointers   ( Largest SubArray Sum <=k)    TC: O(2n)->O(n) 
+    public static void findSubarraysUsingTwoPtr(int[] nums, int k) {
+        int n = nums.length;
+        int len = 0;
+        int sum = 0;
 
-        int prefixSum = 0;
-        int maxLength = 0;
-        int minLength = Integer.MAX_VALUE;
-        
-        for (int i = 0; i < num.length; i++) {
-            
-            prefixSum += num[i];
+        for (int i = 0, j = 0; j < n; j++) {
+            sum += nums[j];
 
-            if (prefixSum == k) {
-                maxLength = Math.max(maxLength, i + 1);
-                minLength = Math.min(minLength, i + 1);
+            while (sum > k) {
+                sum -= nums[i++];
             }
 
-            if (firstOcc.containsKey(prefixSum - k)) {
-                maxLength = Math.max(maxLength, i - firstOcc.get(prefixSum - k));
-            }
-
-            if (lastOcc.containsKey(prefixSum - k)) {
-                minLength = Math.min(minLength, i - lastOcc.get(prefixSum - k));
-            }
-
-            firstOcc.putIfAbsent(prefixSum, i);
-            lastOcc.put(prefixSum, i);
+            len = Math.max(len, j - i + 1);
         }
 
+        System.out.println("Largest Subarray Length = " + len);
     }
+
 
     public static void main(String[] args) {
         int[] nums = { 3, 1, 3, -2, 2 };
         int k = 4;
-        findSubarrays(nums, k);
+        // findSubarrays(nums, k);
+        findSubarraysUsingTwoPtr(nums, k);
         // Output:
         // Largest Subarray Length = 4
         // Smallest Subarray Length = 2
