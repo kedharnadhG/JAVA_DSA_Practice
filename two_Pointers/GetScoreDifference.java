@@ -22,7 +22,7 @@ public class GetScoreDifference {
 
         boolean isReversed = false;
 
-        while (start < end) {
+        while (start <= end) {
 
             int selected = 0;
 
