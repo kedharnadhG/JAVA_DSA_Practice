@@ -13,15 +13,14 @@ public class NoOfQuadruplets {
      
      */
 
+     
     /*Optimised1  -> TC : O(n^2)
-    
-    
     */
     public static long countQuadruplets(long[] b, int k1, int k2) {
         int n = b.length;
 
         long c = 0;
-        
+
         for (int j = 1; j < n - 2; j++) {
             int i = j - 1;
 
@@ -44,14 +43,19 @@ public class NoOfQuadruplets {
                 }
             }
 
-            c  += c1 * c2;
+            c += c1 * c2;
 
         }
 
-        return  c;
+        return c;
 
     }
     
+    
+    /* Optimal2 :-> using binary search, by fixing "j", get i-count using a formula on left-side
+      
+                get the (k,l) pairs  [j+1 .... n] :->  using a suffix-array ( see notes for reference)
+     */
 
     
     public static void main(String[] args) {

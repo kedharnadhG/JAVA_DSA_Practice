@@ -25,19 +25,22 @@ public class BFS {
 
     //4. Function to add an edge into the graph
     void addEdge(int v, int w) {
-        adj[v].add(w);
+            adj[v].add(w);   // v -> w   (directed edge)
+            // adj[w].add(v);   // w -> v   (use this also if wanted undirected-edge)
     }
 
-    //5. function for the BFS traversal
+    //5. function for the BFS traversal 
     public void bfsTraversal(int v) {
         //mark all the vertices as not visited with default value as false in the visited array
         boolean[] visited = new boolean[V];
+        int level[] = new int[V];
 
         //create an empty queue 
         LinkedList<Integer> queue = new LinkedList<Integer>();
 
         //mark the current node as visited and enqueue it
         visited[v] = true;
+        level[v] = 0;
 
         //enqueue the current node
         queue.add(v);
@@ -47,7 +50,7 @@ public class BFS {
 
             //dequeue a vertex from queue and print it, poll it out of the queue instead of pop because pop throws an exception if the queue is empty whereas poll returns null
             v = queue.poll();
-            System.out.print(v + " ");
+            System.out.println(v + " " + " -> Level : " + level[v] );
 
 
             //get all adjacent vertices of the dequeued vertex v
@@ -57,6 +60,7 @@ public class BFS {
                 int n = i.next();
                 if (!visited[n]) {
                     visited[n] = true;
+                    level[n] = level[v] + 1;
                     queue.add(n);
                 }
             }
