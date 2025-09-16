@@ -6,6 +6,9 @@ public class SumOfSubTree {
     private int V;
     LinkedList<Integer> adj[];
 
+    // max-Sum of subtree
+    int answer = Integer.MIN_VALUE;
+
     public SumOfSubTree(int v) {
         this.V = v;
         adj = new LinkedList[v + 1];
@@ -34,6 +37,8 @@ public class SumOfSubTree {
 
         int s = 0;
 
+        
+
         for (int child : adj[v]) {
             if (child == parent[v]) {
                 continue;
@@ -43,9 +48,12 @@ public class SumOfSubTree {
         }
         sum[v] = s + b[v];
 
+        answer = Math.max(answer, sum[v]);
 
 
         System.out.println("Node: " + v + " | Parent: " + parent[v] + " | Sum: " + sum[v]);
+
+
     }
 
 
@@ -58,6 +66,10 @@ public class SumOfSubTree {
         parent[1] = -1;
         dfsUtil(1, visited, parent, sum, b);
 
+        System.out.println("----------------------------------");
+
+        System.out.println("The Max Sum of Subtree is: " + answer);
+        
 
     }
 
