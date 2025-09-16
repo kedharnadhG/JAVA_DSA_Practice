@@ -32,9 +32,11 @@ public class DFS {
     }
 
     //utility function to track the visited vertices
-    public void dfsUtil(int v, boolean[] visited) {
+    public void dfsUtil(int v, boolean[] visited, int[] parent) {
+        
         visited[v] = true;
-        System.out.print(v + " ");
+
+        System.out.println(v + " " + " & it's parent is  -> " + parent[v] );
 
         //after that we need to traverse all the adjacent vertices of the current vertex
         Iterator<Integer> itr = adj[v].listIterator();
@@ -43,10 +45,10 @@ public class DFS {
             //getting the next adjacent vertex
             int n = itr.next();
             if (!visited[n]) {
-
+                parent[n] = v;
                 //if the vertex is not visited, mark it as visited
                 //this is a recursive call, it ensures the stack procedure
-                dfsUtil(n, visited);
+                dfsUtil(n, visited, parent);
             }
         }
 
@@ -56,9 +58,10 @@ public class DFS {
     // function for the DFS traversal
     public void dfsTraversal(int v) {
         boolean[] visited = new boolean[V];
+        int[] parent = new int[V];
 
         //calling the utility function for to mark the visited vertices
-        dfsUtil(v, visited);
+        dfsUtil(v, visited, parent);
 
     }
 
