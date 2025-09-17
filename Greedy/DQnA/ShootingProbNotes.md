@@ -126,61 +126,169 @@ Group `k1 = {1, 2, 4, 5}`, total = 4.
 
 ***
 
-# The Sum of Distances: Core Logic and Walkthrough
+---
 
-## The Core Formulas
+````markdown
+# Aarsi & Krypto Shooting Problem – Detailed Notes
 
-For each index `i`, we calculate the total sum of distances `r1` from `i` to all non-zero elements in the array. This is done by summing two contributions: one from the left (`d1`) and one from the right (`d2`).
-
-Let's define the key variables:
-* **`c1`**: Count of non-zero elements to the left of and including the current index `i`.
-* **`p1`**: Count of non-zero elements to the right of and including the current index `i`.
-* **`sum_k1[i]`**: The prefix sum of indices of non-zero elements up to and including `i`.
-* **`sumr_k1[i]`**: The suffix sum of indices of non-zero elements from `i` to the end.
-
-The formulas for the contributions are as follows:
-
-- **Left Contribution ($d1$)**: `d1 = i * c1 - sum_k1[i]`
-- **Right Contribution ($d2$)**: `d2 = sumr_k1[i] - i * p1`
-- **Total Distance ($r1$)**: `r1 = d1 + d2`
-
-**Important**: At the moment of computation, both `c1` and `p1` still include the current index `i` if `k1[i] > 0`. This might seem confusing, but it's essential for the math to work, as explained in the section below. After the calculation for a given `i`, if `k1[i] > 0`, we decrement `p1` to prepare for the next iteration.
+## Problem Context
+We are asked to compute distances between a chosen shooting index `i` and all positions where enemies (`k1`) are present. The challenge is to avoid **double-counting** the current index when it appears in both left and right contributions.
 
 ---
 
-## Step-by-Step Walkthrough Table
+## Core Idea
+For each position `i`, we compute:
 
-Here is a full breakdown of the values at each index `i`.
+- **Left Contribution (d1)**  
+  ```java
+  d1 = i * c1 - sum_k1[i];
+````
 
-| **i** | **k1[i]** | **before c1** | **after c1** | **p1 (before)** | **sum_k1[i]** | **sumr_k1[i]** | **d1** | **d2** | **r1** | **p1(after)** |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **1** | 1 | 0 | 1 | 4 | 1 | 12 | $1 \cdot 1 - 1 = 0$ | $12 - 1 \cdot 4 = 8$ | 8 | 3 |
-| **2** | 2 | 1 | 2 | 3 | 3 | 11 | $2 \cdot 2 - 3 = 1$ | $11 - 2 \cdot 3 = 5$ | 6 | 2 |
-| **3** | 0 | 2 | 2 | 2 | 3 | 9 | $3 \cdot 2 - 3 = 3$ | $9 - 3 \cdot 2 = 3$ | 6 | 2 |
-| **4** | 4 | 2 | 3 | 2 | 7 | 9 | $4 \cdot 3 - 7 = 5$ | $9 - 4 \cdot 2 = 1$ | 6 | 1 |
-| **5** | 5 | 3 | 4 | 1 | 12 | 5 | $5 \cdot 4 - 12 = 8$ | $5 - 5 \cdot 1 = 0$ | 8 | 0 |
+where
+
+* `c1` = count of enemies seen so far (including current if any).
+* `sum_k1[i]` = prefix sum of positions up to `i`.
+
+This expands to:
+
+$$
+d1 = \sum_{k \in L} (i - k)
+$$
+
+where `L = {k | k ≤ i}`.
+
+* **Right Contribution (d2)**
+
+  ```java
+  d2 = sumr_k1[i] - i * p1;
+  ```
+
+  where
+
+  * `p1` = remaining count of enemies (including current if any).
+  * `sumr_k1[i]` = suffix sum of positions from `i` to end.
+
+  This expands to:
+
+  $$
+  d2 = \sum_{k \in R} (k - i)
+  $$
+
+  where `R = {k | k ≥ i}`.
+
+* **Total Result**
+
+  ```java
+  r1 = d1 + d2;
+  ```
 
 ---
 
-## The Non-Double-Counting Principle
+## Why Current Index is Zero Contribution
 
-A key insight into this algorithm is understanding why including the current element `i` in both the prefix (`sum_k1`) and suffix (`sumr_k1`) sums doesn't lead to a double-count of distance.
+* In `d1`, the current element contributes `(i - i) = 0`.
+* In `d2`, the current element contributes `(i - i) = 0`.
 
-The distance from the current element to itself is **always zero**.
-* For `d1`, the term for the current element `i` is $(i - i) = 0$.
-* For `d2`, the term for the current element `i` is also effectively $(i - i) = 0$.
-
-Because the contribution of the current element to both the left and right distance sums is zero, its inclusion is mathematically harmless. It simplifies the implementation without affecting the final result. The total distance is correctly calculated as the sum of the absolute distances to all other non-zero elements.
-
-**Algebraically**:
-Let $L$ be the set of indices of non-zero elements to the left of or at $i$, and $R$ be the set of indices of non-zero elements to the right of or at $i$.
-$d1 = \sum_{k \in L} (i - k)$
-$d2 = \sum_{k \in R} (k - i)$
-
-The total distance is $d1 + d2$. The only index where the sets $L$ and $R$ overlap is `i` itself. For this single shared index, the contributions are $(i - i) + (i - i) = 0$, so there's no double-counting. Each other index is counted exactly once, either in the left sum or the right sum.
+Thus, although `i` appears in both `L` and `R`, its contribution is **zero** in both places, avoiding double-counting.
 
 ---
 
-## One-Line Intuitive Summary
+## Dry Run Example
 
-This code elegantly includes the current index in both left and right distance calculations, and because the distance from an index to itself is zero, it contributes nothing to either sum, resulting in an accurate total distance without any double-counting.
+Let’s take enemy positions:
+
+```
+k1 = [1, 2, 2, 4, 5]
+```
+
+We maintain:
+
+* `c1` → prefix count.
+* `p1` → suffix count.
+* `sum_k1[i]` → prefix sums.
+* `sumr_k1[i]` → suffix sums.
+
+### Step-by-Step Table
+
+| i | k1\[i] | c1 (before) | c1 (after) | p1 (before) | sum\_k1\[i] | sumr\_k1\[i] | d1 (left) | d2 (right) | r1 = d1+d2 | p1 (after) |
+| - | ------ | ----------- | ---------- | ----------- | ----------- | ------------ | --------- | ---------- | ---------- | ---------- |
+| 1 | 1      | 0           | 1          | 4           | 1           | 12           | 0         | 8          | 8          | 3          |
+| 2 | 2      | 1           | 2          | 3           | 3           | 11           | 1         | 5          | 6          | 2          |
+| 3 | 0      | 2           | 2          | 2           | 3           | 9            | 3         | 3          | 6          | 2          |
+| 4 | 4      | 2           | 3          | 2           | 7           | 9            | 5         | 1          | 6          | 1          |
+| 5 | 5      | 3           | 4          | 1           | 12          | 5            | 8         | 0          | 8          | 0          |
+
+---
+
+### Verification of Each Step
+
+* **i=1**
+
+  * Left distances: (1-1)=0
+  * Right distances: (2-1)+(2-1)+(4-1)+(5-1)=1+1+3+4=8
+  * Total = 0+8=8
+
+* **i=2**
+
+  * Left distances: (2-1)+(2-2)=1+0=1
+  * Right distances: (2-2)+(4-2)+(5-2)=0+2+3=5
+  * Total = 6
+
+* **i=3**
+
+  * Left distances: (3-1)+(3-2)=2+1=3
+  * Right distances: (4-3)+(5-3)=1+2=3
+  * Total = 6
+
+* **i=4**
+
+  * Left distances: (4-1)+(4-2)+(4-4)=3+2+0=5
+  * Right distances: (4-4)+(5-4)=0+1=1
+  * Total = 6
+
+* **i=5**
+
+  * Left distances: (5-1)+(5-2)+(5-4)+(5-5)=4+3+1+0=8
+  * Right distances: none = 0
+  * Total = 8
+
+---
+
+## Why No Double Counting
+
+Both prefix (`sum_k1[i]`) and suffix (`sumr_k1[i]`) include the current index.
+
+* In left contribution: `(i - i) = 0`
+* In right contribution: `(i - i) = 0`
+
+So including the current in both is **harmless**.
+
+Formally:
+
+$$
+d1 + d2 = \sum_{k∈L} (i - k) + \sum_{k∈R} (k - i)
+$$
+
+The overlap happens only when `k=i`, but that adds **0+0**.
+All other terms are counted exactly once, giving the correct sum of absolute distances.
+
+---
+
+## One-Line Summary
+
+The code safely includes the current index in both prefix and suffix because its self-distance is zero. Hence, no double counting occurs, and the result correctly represents the total distance to all enemy positions.
+
+```
+
+---
+
+This is now a **single structured Markdown file** with:  
+✅ Headings  
+✅ Code/formulas  
+✅ Dry-run table  
+✅ Step-by-step explanations  
+✅ Final intuition  
+
+Do you want me to also include a **Java code block** at the end of the `.md` (so you can run & test alongside notes), or keep this purely as explanatory notes?
+```
+.
