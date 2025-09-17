@@ -120,104 +120,67 @@ Group `k1 = {1, 2, 4, 5}`, total = 4.
 - The formulas ensure **every pair is counted exactly once**.
 
 ---
--- See this 
+# See this 
 
 ------------------------------------------------------------
-The core formulas in the code (per i)
-if (k1[i] > 0) c1++;                // include current in left-count
-d1 = i * c1 - sum_k1[i];            // left contribution = sum_{k in L} (i - k)
-d2 = sumr_k1[i] - i * p1;           // right contribution = sum_{k in R} (k - i)
-r1 = d1 + d2
-if (k1[i] > 0) p1--;                // remove current from remaining count for next i
 
+***
 
-Important: at time of computing d1 and d2, c1 includes current, and p1 still includes current. That’s what causes confusion — but the math below shows this is harmless.
+# The Sum of Distances: Core Logic and Walkthrough
 
-Full step-by-step table (values at each i)
+## The Core Formulas
 
-Columns: i | k1[i] | before c1 | after c1 | p1 (before) | sum_k1[i] | sumr_k1[i] | d1 | d2 | r1 | p1(after)
+For each index `i`, we calculate the total sum of distances `r1` from `i` to all non-zero elements in the array. This is done by summing two contributions: one from the left (`d1`) and one from the right (`d2`).
 
-i=1:
- k1[1]=1
- before c1 = 0
- after c1  = 1            // we did c1++
- p1 (before) = 4
- sum_k1[1] = 1
- sumr_k1[1] = 12
- d1 = 1*1 - 1 = 0        // left distances: (1-1)=0
- d2 = 12 - 1*4 = 8       // right distances: (1-1)+(2-1)+(4-1)+(5-1)=0+1+3+4=8
- r1 = 0 + 8 = 8
- p1(after) = 3           // p1-- after iteration
+Let's define the key variables:
+* **`c1`**: Count of non-zero elements to the left of and including the current index `i`.
+* **`p1`**: Count of non-zero elements to the right of and including the current index `i`.
+* **`sum_k1[i]`**: The prefix sum of indices of non-zero elements up to and including `i`.
+* **`sumr_k1[i]`**: The suffix sum of indices of non-zero elements from `i` to the end.
 
-i=2:
- k1[2]=2
- before c1 = 1
- after c1  = 2
- p1 (before) = 3
- sum_k1[2] = 3
- sumr_k1[2] = 11
- d1 = 2*2 - 3 = 1        // left distances: (2-1)+(2-2)=1+0=1
- d2 = 11 - 2*3 = 5       // right distances: (2-2)+(4-2)+(5-2)=0+2+3=5
- r1 = 1 + 5 = 6
- p1(after) = 2
+The formulas for the contributions are as follows:
 
-i=3:
- k1[3]=0
- before c1 = 2
- after c1  = 2           // unchanged
- p1 (before) = 2
- sum_k1[3] = 3
- sumr_k1[3] = 9
- d1 = 3*2 - 3 = 3        // left distances (to i=3): (3-1)+(3-2)=2+1=3
- d2 = 9 - 3*2 = 3        // right distances (4,5 to 3): (4-3)+(5-3)=1+2=3
- r1 = 3 + 3 = 6
- p1(after) = 2           // unchanged (k1[3]==0)
+- **Left Contribution ($d1$)**: `d1 = i * c1 - sum_k1[i]`
+- **Right Contribution ($d2$)**: `d2 = sumr_k1[i] - i * p1`
+- **Total Distance ($r1$)**: `r1 = d1 + d2`
 
-i=4:
- k1[4]=4
- before c1 = 2
- after c1  = 3
- p1 (before) = 2
- sum_k1[4] = 7
- sumr_k1[4] = 9
- d1 = 4*3 - 7 = 5        // left distances to 4: (4-1)+(4-2)+(4-4)=3+2+0=5
- d2 = 9 - 4*2 = 1        // right distances: (4-4)+(5-4)=0+1=1
- r1 = 5 + 1 = 6
- p1(after) = 1
+**Important**: At the moment of computation, both `c1` and `p1` still include the current index `i` if `k1[i] > 0`. This might seem confusing, but it's essential for the math to work, as explained in the section below. After the calculation for a given `i`, if `k1[i] > 0`, we decrement `p1` to prepare for the next iteration.
 
-i=5:
- k1[5]=5
- before c1 = 3
- after c1  = 4
- p1 (before) = 1
- sum_k1[5] = 12
- sumr_k1[5] = 5
- d1 = 5*4 -12 = 8        // left distances to 5: (5-1)+(5-2)+(5-4)+(5-5)=4+3+1+0=8
- d2 = 5 - 5*1 = 0        // right distances: none -> 0
- r1 = 8 + 0 = 8
- p1(after) = 0
+---
 
-Why this does not double-count the current element
+## Step-by-Step Walkthrough Table
 
-Both sum_k1[i] (prefix) and sumr_k1[i] (suffix) include the current index i when k1[i] > 0.
+Here is a full breakdown of the values at each index `i`.
 
-Both d1 and d2 therefore include a term for the current element — but the term is zero in both:
+| **i** | **k1[i]** | **before c1** | **after c1** | **p1 (before)** | **sum_k1[i]** | **sumr_k1[i]** | **d1** | **d2** | **r1** | **p1(after)** |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **1** | 1 | 0 | 1 | 4 | 1 | 12 | $1 \cdot 1 - 1 = 0$ | $12 - 1 \cdot 4 = 8$ | 8 | 3 |
+| **2** | 2 | 1 | 2 | 3 | 3 | 11 | $2 \cdot 2 - 3 = 1$ | $11 - 2 \cdot 3 = 5$ | 6 | 2 |
+| **3** | 0 | 2 | 2 | 2 | 3 | 9 | $3 \cdot 2 - 3 = 3$ | $9 - 3 \cdot 2 = 3$ | 6 | 2 |
+| **4** | 4 | 2 | 3 | 2 | 7 | 9 | $4 \cdot 3 - 7 = 5$ | $9 - 4 \cdot 2 = 1$ | 6 | 1 |
+| **5** | 5 | 3 | 4 | 1 | 12 | 5 | $5 \cdot 4 - 12 = 8$ | $5 - 5 \cdot 1 = 0$ | 8 | 0 |
 
-In d1 the current contributes (i - i) = 0.
+---
 
-In d2 the current contributes (i - i) = 0 (since sumr contributes +i and i*p1 includes one i for the current).
+## The Non-Double-Counting Principle
 
-So the current index shows up in both sums, but its contribution is zero — no double counting of distance happens.
+A key insight into this algorithm is understanding why including the current element `i` in both the prefix (`sum_k1`) and suffix (`sumr_k1`) sums doesn't lead to a double-count of distance.
 
-Algebraically:
+The distance from the current element to itself is **always zero**.
+* For `d1`, the term for the current element `i` is $(i - i) = 0$.
+* For `d2`, the term for the current element `i` is also effectively $(i - i) = 0$.
 
-Let L = {k in k1 | k ≤ i}, R = {k in k1 | k ≥ i} (note both sets include i if i is in k1).
+Because the contribution of the current element to both the left and right distance sums is zero, its inclusion is mathematically harmless. It simplifies the implementation without affecting the final result. The total distance is correctly calculated as the sum of the absolute distances to all other non-zero elements.
 
-d1 = ∑_{k∈L} (i - k) and d2 = ∑_{k∈R} (k - i).
+**Algebraically**:
+Let $L$ be the set of indices of non-zero elements to the left of or at $i$, and $R$ be the set of indices of non-zero elements to the right of or at $i$.
+$d1 = \sum_{k \in L} (i - k)$
+$d2 = \sum_{k \in R} (k - i)$
 
-d1 + d2 = ∑_{k∈L} (i - k) + ∑_{k∈R} (k - i)
-The only overlap is k = i, for which both (i - i) and (i - i) are 0. All other indices are counted exactly once (left or right side) in their correct sign. So the total is sum of absolute distances of every k1-position to i — correct and not double-counted.
+The total distance is $d1 + d2$. The only index where the sets $L$ and $R$ overlap is `i` itself. For this single shared index, the contributions are $(i - i) + (i - i) = 0$, so there's no double-counting. Each other index is counted exactly once, either in the left sum or the right sum.
 
-One-line intuitive summary
+---
 
-The code includes the current index in both prefix and suffix arrays for convenience, but because the distance from the current index to itself is zero, it contributes nothing to either side — hence no double counting. After computing, the code decrements p1 so that for the next iteration p1 truly represents the remaining elements to the right.
+## One-Line Intuitive Summary
+
+This code elegantly includes the current index in both left and right distance calculations, and because the distance from an index to itself is zero, it contributes nothing to either sum, resulting in an accurate total distance without any double-counting.
