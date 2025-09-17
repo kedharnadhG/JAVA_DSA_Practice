@@ -2,6 +2,8 @@ package DQnA;
 
 import java.util.Scanner;
 
+// Notes :->  https://github.com/kedharnadhG/JAVA_DSA_Practice/blob/main/Greedy/DQnA/ShootingProbNotes.md
+
 public class ShootingCchefAarsiKrypto {
     
 
@@ -50,6 +52,8 @@ public class ShootingCchefAarsiKrypto {
             StringBuilder sb = new StringBuilder();
 
             for (int i = 1; i <= n; i++) {
+
+                // for Aarsi
                 if (k1[i] > 0) {
                     c1++;
                 }
@@ -62,6 +66,7 @@ public class ShootingCchefAarsiKrypto {
                     p1--;
                 }
 
+                // for Krypto
                 if (k5[i] > 0) {
                     c2++;
                 }
