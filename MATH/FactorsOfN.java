@@ -9,15 +9,17 @@ public class FactorsOfN {
     public static void factors(int n, List<Integer> listOfFactors) {
         for (int i = 1; i <= Math.sqrt(n); i++) {
             if (n % i == 0) {
-                if(n/i == i) {
+                if (n / i == i) {
                     listOfFactors.add(i);
                 } else {
                     listOfFactors.add(i);
-                    listOfFactors.add(n/i);
+                    listOfFactors.add(n / i);
                 }
             }
         }
     }
+    
+    // how to find the prime-factors is pending
     
 
     public static void main(String[] args) {
