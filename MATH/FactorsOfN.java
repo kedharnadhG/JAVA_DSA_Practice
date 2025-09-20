@@ -19,7 +19,7 @@ public class FactorsOfN {
         }
     }
     
-    // how to find the prime-factors is pending
+    // how to find the prime-factors is pending , 20/9 also pending
     
 
     public static void main(String[] args) {
