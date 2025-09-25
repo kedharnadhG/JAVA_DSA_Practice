@@ -3,6 +3,8 @@ package MATH;
 import java.util.HashMap;
 import java.util.Map;
 
+// The overall TC :-> O(n * 20 + sqrt(10^6))
+
 public class PrimeFactorsForAllArrEles {
 
     static final int MAXN = 1000000;
