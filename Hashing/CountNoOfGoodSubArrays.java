@@ -36,6 +36,14 @@ public class CountNoOfGoodSubArrays {
                 // In 1-based, length is j-i+1 but j and i already start from 1, so no extra shift.
                 // In 0-based, r starts from 0, so to include that first element, you need r+1.
     
+                
+                        // | System  | What is `p[i]`?             | Meaning of `i` | Needed adjustment |
+                        // | ------- | --------------------------- | -------------- | ----------------- |
+                        // | 1-based | sum of first `i` elements   | starts at 1    | no offset         |
+                        // | 0-based | sum of first `i+1` elements | starts at 0    | need `+1` offset  |
+ 
+                
+    
                 long y = p[i] - (i +1);
     
                 count += freq.getOrDefault(y, 0L);
