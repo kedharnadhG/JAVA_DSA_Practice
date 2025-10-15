@@ -1,5 +1,7 @@
 package two_Pointers;
 
+import java.util.Arrays;
+
 public class MergeTwoSortedArrays {
     
     
@@ -32,20 +34,51 @@ public class MergeTwoSortedArrays {
     */
     
 
-    /*Inplace
+    //optimal-2 (without sc)
+    /*Inplace  : -> TC: O(min(n, m)) + O(n*logn) + O(m*logm)
      
     */
+    public static void merge(int[] arr1, int[] arr2, int n, int m) {
+ 
+        // Declare 2 pointers:
+        int left = n - 1;
+        int right = 0;
+ 
+        // Swap the elements until arr1[left] is
+        // smaller than arr2[right]:
+        while (left >= 0 && right < m) {
+            if (arr1[left] > arr2[right]) {
+                int temp = arr1[left];
+                arr1[left] = arr2[right];
+                arr2[right] = temp;
+                left--;
+                right++;
+            } else {
+                break;
+            }
+        }
+ 
+        // Sort arr1[] and arr2[] individually:
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+    }
 
-    
     public static void main(String[] args) {
         int[] ar1 = { 1, 3, 5, 7 };
         int[] ar2 = { 2, 4, 6, 8 };
         int[] ar3 = new int[ar1.length + ar2.length];
 
-        // using 2-pointers
+        // using 2-pointers optimal-1 (using space)
         // mergeArrays(ar1, ar2, ar3);
+        // for (int value : ar3)
+        //     System.out.print(value + " ");
 
-        for (int value : ar3)
+
+        // optimal-2 (without sc)
+        merge(ar1, ar2, ar1.length, ar2.length);
+        for (int value : ar1)
+            System.out.print(value + " ");
+        for (int value : ar2)
             System.out.print(value + " ");
     }
     
