@@ -25,7 +25,7 @@ public class largestValidSubstring {
             // add character
             map.put(c, map.getOrDefault(c, 0) + 1);
 
-            // shrink while invalid
+            // shrink while invalid   :---   lastKey()-> gives the largest key, firstKey()-> gives the smallest key
             while (map.lastKey() - map.firstKey() > k) {
                 char leftChar = s.charAt(left);
                 map.put(leftChar, map.get(leftChar) - 1);
