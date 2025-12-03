@@ -45,4 +45,4 @@ public class CandyDistUsingGreedy {
 // The Overall Time Complexity: O(n) + O(n) + O(n) = O(3n) => O(n)
 // The Space Complexity: O(n)
 
-// we can optimise the space complexity by using constant space, using [SLOPE Concept], TC: O(n), SC: O(1), which is in the note ,please refer once
+// we can optimise the space complexity by using constant space, using [SLOPE Concept], TC: O(n), SC: O(1), which is in the notes(DS-2) ,please refer once

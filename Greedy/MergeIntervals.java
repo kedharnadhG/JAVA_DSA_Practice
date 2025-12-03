@@ -27,10 +27,10 @@ public class MergeIntervals {
         return merged.toArray(new int[merged.size()][]);
     }
     public static void main(String[] args) {
-        int[][] intervals = {{1,3},{2,6},{8,10},{15,18}};
+        int[][] intervals = {{1,3},{8,10},{15,18},{2,6}};
        int[][] res = merge(intervals);
-       for(int[] interval : res){
-           System.out.println(Arrays.toString(interval));
+       for (int[] interval : res) {
+           System.out.print(" " + Arrays.toString(interval));
        }
     }
 }

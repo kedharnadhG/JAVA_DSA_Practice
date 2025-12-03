@@ -2,6 +2,7 @@ public class LemonadeChangeGrdy {
     // here we are greedy about the "5$"
 
     public static boolean lemonadeChange(int[] bills) {
+        // bills : {5,5,10,10,20};
         int  d5=0, d10=0, d20=0;
 
         for(int i=0; i<bills.length; i++) {
