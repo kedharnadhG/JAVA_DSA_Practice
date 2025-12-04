@@ -76,7 +76,7 @@ public class LevelOrderTraversalBFT {
         tree.root.right.left = new Node(15);
         tree.root.right.right = new Node(7);
 
-        System.out.println("Level Order Traversal of given tree is :");
+        System.out.println("Level Order / Breadth First Traversal of given tree is :");
         List<List<Integer>> res = tree.levelOrderTraversal(tree.root);
 
         // while (res.iterator().hasNext()) {

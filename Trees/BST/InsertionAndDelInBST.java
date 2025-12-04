@@ -12,13 +12,29 @@ public class InsertionAndDelInBST {
 
     Node root;
 
-    public InsertionAndDelInBST(){
+    public InsertionAndDelInBST() {
         root = null;
     }
 
-    InsertionAndDelInBST(int data){
-        root = new Node(data);
-    }
+    /*Do we need a constructor like:
+            BST(int data) { root = new Node(data); }
+
+        👉 NO, not unless you want to FORCE the tree to start with that value.
+
+        Why?
+        - insert() already creates the root when root == null.
+        - Using BST() (empty constructor) + insert(x) is cleaner and flexible.
+
+        Conclusion:
+        - For normal BST usage: keep only the empty constructor.
+        - The constructor with data is unnecessary.
+*/
+
+    // InsertionAndDelInBST(int data){
+    //     root = new Node(data);
+    // }
+
+    
 
     //function to insert the element in the BST
 
@@ -54,14 +70,15 @@ public class InsertionAndDelInBST {
                 inorderRec(root);
             }
 
-            void inorderRec(Node root){
-                if(root != null){
+            void inorderRec(Node root) {
+                if (root != null) {
                     inorderRec(root.left);
-                    System.out.print(root.data+" ");
+                    System.out.print(root.data + " ");
                     inorderRec(root.right);
                 }
             }
 
+            
     // funtion to search the element in the BST
 
             Node search(Node root, int key){
@@ -77,8 +94,9 @@ public class InsertionAndDelInBST {
                 }
             }
 
+    
     // function to delete the element in the BST
-
+    
             void delete(int data){
                 root = deleteNode(root, data);
             }
@@ -119,7 +137,7 @@ public class InsertionAndDelInBST {
 
                     */
 
-                    //find the inorder precessor (largest element in the left subtree)
+                    //find the inorder predessor (largest element in the left subtree)
                     Node inorderPredecessor = maXValNode(root.left);
 
                     // Copy the inorder predecessor's content to the root node
@@ -193,3 +211,28 @@ public class InsertionAndDelInBST {
     }
 
 }
+
+
+
+/* Why must we 'return root' in recursive BST insertion?
+
+    ✔ Reason:
+    Recursion modifies a subtree and must return the updated subtree
+    so the parent can correctly update its LEFT or RIGHT pointer.
+
+    ✔ What happens:
+    insertRec(root.left, data) returns the updated left subtree.
+    Parent must assign it:
+            root.left = (updated_subtree)
+
+    ✔ If you remove 'return root':
+        - Recursive call returns nothing → parent receives NULL
+        - Parent does: root.left = NULL   (tree becomes corrupted)
+
+    ✔ Important:
+        The root node reference itself rarely changes,
+        but the subtree BELOW it changes → must be returned upward.
+
+    Rule:
+        ALWAYS return root in recursive insert/delete of BST.
+*/

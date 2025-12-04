@@ -84,3 +84,28 @@ public class InsertionHeap {
         
     }
 }
+
+
+
+
+
+/*HEAPIFY RULES (Min-Heap and Max-Heap)
+
+    1. INSERT
+    - Always insert at last index.
+    - Fix by comparing with parent.
+    - Use UP-HEAPIFY.
+
+    2. DELETE ROOT
+    - Move last element to root.
+    - Fix by comparing with children.
+    - Use DOWN-HEAPIFY.
+
+    3. DECREASE KEY
+    - Min-heap: value becomes smaller → may violate parent → UP
+    - Max-heap: value becomes smaller → may violate children → DOWN
+
+    4. INCREASE KEY
+    - Min-heap: value becomes larger → may violate children → DOWN
+    - Max-heap: value becomes larger → may violate parent → UP
+*/

@@ -1,5 +1,7 @@
 package Trees;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 class  Node {
@@ -20,6 +22,7 @@ public class InorderTraversal {
         root = null;
     }
 
+    List<Integer> sorted = new ArrayList<>();
     //function definition of inorder Traversal of the tree
     void inorderTraversal(Node node){
         if(node==null){
@@ -32,7 +35,8 @@ public class InorderTraversal {
         inorderTraversal(node.left);
 
         //2. visit the root node (print the data)
-        System.out.print(node.data+" ");
+        // System.out.print(node.data+" ");
+        sorted.add(node.data);
 
         //3. traverse the right subtree
         inorderTraversal(node.right);
@@ -73,10 +77,10 @@ public class InorderTraversal {
         tree.root.right.left.left = new Node(7);
         tree.root.right.left.right = new Node(8);
 
-        // System.out.println("Inorder traversal of given tree is :");
+        System.out.println("Inorder traversal of given tree is using Recursion :");
         
-        // tree.inorderTraversal(tree.root);
-
+        tree.inorderTraversal(tree.root);
+        System.out.println(tree.sorted);
 
 
         System.out.println();
