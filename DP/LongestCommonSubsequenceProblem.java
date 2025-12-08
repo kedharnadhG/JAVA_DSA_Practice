@@ -23,7 +23,7 @@ public class LongestCommonSubsequenceProblem {
 
         //if the characters are not same, we get the result by max(lcs(X, Y, i-1, j), lcs(X, Y, i, j-1))
         else{
-            result[i][j] = Math.max(lcs(X, Y, i-1, j, result), lcs(X, Y, i, j-1, result));
+            result[i][j] = Math.max(lcs(X, Y, i-1, j, result), lcs(X, Y, i, j-1, result));        // why [i-1][j] and [i][j-1], because we are reducing the size of one string at a time 
         }
 
         return result[i][j];

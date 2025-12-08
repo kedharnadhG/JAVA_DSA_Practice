@@ -18,7 +18,7 @@ public class KthLargestElement {
 
             //deletion of elements from the minheap (n-k) times
             if(minheap.size()>k){
-                minheap.poll();
+                minheap.poll();     // delete the smallest element
             }
 
         }

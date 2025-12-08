@@ -36,10 +36,13 @@ public class KnapsackProblem {
             result[c][n] = knapsackHelper(c, wt, profit, n-1, result);
             return result[c][n];
         }
-        else{
-            //include the current item
-            int exclude = knapsackHelper(c, wt, profit, n-1, result);
+        else {
+            // w <= c
 
+            // exclude the current item  ( not-picking the item)
+            int exclude = knapsackHelper(c, wt, profit, n - 1, result);
+            
+            // include the current item
             int include = profit[n-1] + knapsackHelper(c-wt[n-1], wt, profit, n-1, result);
 
             result[c][n] = Math.max(exclude, include);

@@ -25,7 +25,7 @@ public class HeapSort {
 
         //check if the largest element is not the root
         if (largest != i) {
-            //swap the root with the largest element and call heapify on the largest element
+            //swap the root with the largest element and call heapify on the largest element ( Down-Heapify, on the  largest element-index) )
             swap(arr, i, largest);
 
             heapify(arr, n, largest);
